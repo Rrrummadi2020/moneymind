@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class UserDetails {
 
-    @Value("${username}")
+    @Value("${app.username}")
     private String username;
 
-    @Value("${password}")
+    @Value("${app.password}")
     private String password;
 
     @GetMapping("/user-details")
