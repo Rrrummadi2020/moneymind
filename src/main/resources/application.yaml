@@ -1,29 +1,5 @@
-kind: Application
 spring:
-  application:
-    name: myapp
-  config:
-    import: vault://
-  cloud:
-    vault:
-      host: localhost
-      port: 8200
-      scheme: http
-      authentication: TOKEN
-      token: myroot
-      kv:
-        enabled: true
-        backend: secret
-  datasource:
-    url: jdbc:oracle:thin:@localhost:1521/FREEPDB1
-    username: app_user
-    password: Password123
-    driver-class-name: oracle.jdbc.OracleDriver
-  jpa:
-    hibernate:
-      ddl-auto: update
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.OracleDialect
-    show-sql: true
+  profiles:
+    active: dev
 
+kind: Application
