@@ -22,8 +22,8 @@ public class StudentService {
 
     public List<StudentDTO> getAll() {
         List<Student> students = this.studentRepository.findAll();
-        List<StudentDTO> studentDTOS = new ArrayList<>();
-        return studentDTOS;
+        return studentMapper.toDTOs(students);
+
     }
 
     public StudentDTO create(Student student) {
