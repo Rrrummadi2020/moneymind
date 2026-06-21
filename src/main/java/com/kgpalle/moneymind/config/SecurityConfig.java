@@ -1,6 +1,8 @@
 package com.kgpalle.moneymind.config;
 
+import com.kgpalle.moneymind.entity.Role;
 import com.kgpalle.moneymind.entity.User;
+import com.kgpalle.moneymind.repository.RolesRepository;
 import com.kgpalle.moneymind.repository.UsersRepository;
 import com.kgpalle.moneymind.service.CustomUserDetailsService;
 import org.springframework.boot.CommandLineRunner;
@@ -56,13 +58,19 @@ public class SecurityConfig {
     }
 
     @Bean
-    public CommandLineRunner commandLineRunner(UsersRepository usersRepository, PasswordEncoder passwordEncoder) {
+    public CommandLineRunner commandLineRunner(UsersRepository usersRepository,
+                                               RolesRepository rolesRepository,
+                                               PasswordEncoder passwordEncoder) {
         return (args)->{
             if (usersRepository.findByUsername("admin").isEmpty()) {
                 User user = new User();
                 user.setUsername("admin");
                 user.setPassword(passwordEncoder.encode("Password@123"));
                 usersRepository.save(user);
+                Role role = new Role();
+                role.setName("ADMIN");
+                role.setUser(user);
+                rolesRepository.save(role);
                 System.out.println("Admin user got created !!!");
             }
         };
