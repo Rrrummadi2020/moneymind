@@ -13,15 +13,9 @@ import java.util.List;
 @RestController
 public class StudentsController {
 
-    private StudentRepository studentRepository;
+    private final StudentService studentService;
 
-    private StudentMapper studentMapper;
-
-    private StudentService studentService;
-
-    StudentsController(StudentRepository studentRepository, StudentMapper studentMapper, StudentService studentService) {
-        this.studentRepository = studentRepository;
-        this.studentMapper = studentMapper;
+    StudentsController(StudentService studentService) {
         this.studentService = studentService;
     }
     @GetMapping("/")
